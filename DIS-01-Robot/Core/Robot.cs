@@ -20,19 +20,18 @@ namespace GUI.Core {
 			Area = new Area();
 			_visited = new HashSet<int>();
 			_generators = new Dictionary<int, UniformRNG>();
-			_generators.Add(2, new UniformRNG(seeder.Next(), 0, 1)); // two directions
-			_generators.Add(3, new UniformRNG(seeder.Next(), 0, 2)); // three directions
+			_generators.Add(2, new UniformRNG(seeder.Next(), 0, 1)); // 2 directions
+			_generators.Add(3, new UniformRNG(seeder.Next(), 0, 2)); // 3 directions
+			_generators.Add(4, new UniformRNG(seeder.Next(), 0, 3)); // 4 directions
 			Reset();
 		}
 
 		public void Reset() {
-			Area.CurrentRow = Area.StartRow;
-			Area.CurrentColumn = Area.StartColumn;
+			Area.Reset();
 			_visited.Clear();
 		}
 
 		public int WalkedSteps() {
-			Reset();
 			int currentNodeId = Area.currentNodeId();
 			while (! _visited.Contains(currentNodeId)) {
 				_visited.Add(currentNodeId);

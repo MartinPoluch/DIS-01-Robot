@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DIS_01_Robot.Core {
-	public class Area {
+	public class Area : Resettable {
 
 		public int Rows { get; set; }
 
@@ -22,7 +22,7 @@ namespace DIS_01_Robot.Core {
 		public Direction? PreviousMove { get; set; }
 
 		public Area() {
-			PreviousMove = null;
+			Reset();
 		}
 
 		public List<Direction> PossibleMoves() {
@@ -67,6 +67,12 @@ namespace DIS_01_Robot.Core {
 
 		public int currentNodeId() {
 			return ((CurrentRow - 1) * Columns) + CurrentColumn;
+		}
+
+		public void Reset() {
+			PreviousMove = null;
+			CurrentRow = StartRow + 1;
+			CurrentColumn = StartColumn + 1;
 		}
 	}
 }

@@ -38,7 +38,7 @@ namespace SimulationCore {
 		}
 
 		protected override void BeforeReplication() {
-		
+			Robot.Reset();
 		}
 
 		protected override void AfterReplication() {
