@@ -84,7 +84,7 @@
     <Compile Include="Core\Direction.cs" />
     <Compile Include="Core\Resettable.cs" />
     <Compile Include="Core\Robot.cs" />
-    <Compile Include="Core\GameMode.cs" />
+    <Compile Include="Core\Strategy.cs" />
     <Compile Include="Core\RobotMovementMC.cs" />
     <Compile Include="Core\SimCore.cs" />
     <Compile Include="Core\UniformRNG.cs" />

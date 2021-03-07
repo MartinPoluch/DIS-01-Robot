@@ -25,18 +25,52 @@ namespace DIS_01_Robot.Core {
 			Reset();
 		}
 
+		private bool CanMoveUp() {
+			return (CurrentRow > 1 && PreviousMove != Direction.Down);
+		}
+
+		private bool CanMoveDown() {
+			return (CurrentRow < Rows && PreviousMove != Direction.Up);
+		}
+
+		private bool CanMoveLeft() {
+			return (CurrentColumn > 1 && PreviousMove != Direction.Right);
+		}
+
+		private bool CanMoveRight() {
+			return (CurrentColumn < Columns && PreviousMove != Direction.Left);
+		}
+
 		public List<Direction> PossibleMoves() {
 			List<Direction> directions = new List<Direction>();
-			if (CurrentRow > 1 && PreviousMove != Direction.Down) {
+			if (CanMoveUp()) {
 				directions.Add(Direction.Up);
 			}
-			if (CurrentRow < Rows && PreviousMove != Direction.Up) {
+			if (CanMoveDown()) {
 				directions.Add(Direction.Down);
 			}
-			if (CurrentColumn > 1 && PreviousMove != Direction.Right) {
+			if (CanMoveLeft()) {
 				directions.Add(Direction.Left);
 			}
-			if (CurrentColumn < Columns && PreviousMove != Direction.Left) {
+			if (CanMoveRight()) {
+				directions.Add(Direction.Right);
+			}
+
+			return directions;
+		}
+
+		public List<Direction> PossibleGoodMoves(HashSet<int> visited) {
+			List<Direction> directions = new List<Direction>();
+			if (CanMoveUp() && !visited.Contains(CalculateNodeId(CurrentRow - 1, CurrentColumn))) {
+				directions.Add(Direction.Up);
+			}
+			if (CanMoveDown() && ! visited.Contains(CalculateNodeId(CurrentRow + 1, CurrentColumn))) {
+				directions.Add(Direction.Down);
+			}
+			if (CanMoveLeft() && !visited.Contains(CalculateNodeId(CurrentRow, CurrentColumn - 1))) {
+				directions.Add(Direction.Left);
+			}
+			if (CanMoveRight() && !visited.Contains(CalculateNodeId(CurrentRow, CurrentColumn + 1))) {
 				directions.Add(Direction.Right);
 			}
 
@@ -65,8 +99,12 @@ namespace DIS_01_Robot.Core {
 			PreviousMove = direction;
 		}
 
+		private int CalculateNodeId(int row, int column) {
+			return ((row - 1) * Columns) + column;
+		}
+
 		public int currentNodeId() {
-			return ((CurrentRow - 1) * Columns) + CurrentColumn;
+			return CalculateNodeId(CurrentRow, CurrentColumn);
 		}
 
 		public void Reset() {

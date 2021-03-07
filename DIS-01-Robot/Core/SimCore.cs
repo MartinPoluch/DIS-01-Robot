@@ -28,9 +28,9 @@ namespace SimulationCore {
 
 		public void Simulate(int replications) {
 			try {
+				NumberOfReplications = replications;
 				Stop = false;
 				BeforeSimulation();
-				NumberOfReplications = replications;
 				for (int replication = 0; replication < replications; replication++) {
 					ActualReplication = replication;
 					if (Stop) {
@@ -45,7 +45,7 @@ namespace SimulationCore {
 				AfterSimulation();
 			}
 			catch (Exception exception) {
-				Console.WriteLine(exception.Message);
+				Console.WriteLine(exception);
 			}
 		}
 	}

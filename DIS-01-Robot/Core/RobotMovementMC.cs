@@ -16,15 +16,12 @@ namespace SimulationCore {
 		public int StepsHigherThanK { get; set; }
 		public int SumOfSteps { get; set; }
 
-		public RobotMovementMC(Robot robot, GameMode gameMode) {
+		public RobotMovementMC(Robot robot) {
 			Robot = robot;
 			Worker = null;
-			GameMode = gameMode;
 			SumOfSteps = 0;
 			StepsHigherThanK = 0;
 		}
-
-		public GameMode GameMode { get; set; }
 
 		public ChartSettings ChartSettings { get; set; }
 
@@ -50,15 +47,6 @@ namespace SimulationCore {
 		}
 
 		protected override void DoReplication() {
-			switch (GameMode) {
-				case GameMode.Random: {
-					break;
-				}
-				case GameMode.OwnStrategy: {
-					break;
-				}
-			}
-
 			int currentSteps = Robot.WalkedSteps();
 			SumOfSteps += currentSteps;
 			if (currentSteps > K) {

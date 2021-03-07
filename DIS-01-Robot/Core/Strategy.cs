@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GUI.Core {
-	public enum GameMode {
+	public enum Strategy {
 		Random,
 		OwnStrategy,
 	}

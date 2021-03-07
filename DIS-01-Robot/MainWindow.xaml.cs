@@ -43,7 +43,7 @@ namespace DIS_01_Robot {
 				CurrentColumn = 0,
 			};
 			_robot = new Robot(seeder);
-			MonteCarlo = new RobotMovementMC(_robot, GameMode.Random) {
+			MonteCarlo = new RobotMovementMC(_robot) {
 				ChartSettings = ChartSettings,
 				K = 5,
 			};
@@ -150,15 +150,15 @@ namespace DIS_01_Robot {
 
 		private void RadioButton_Click(object sender, RoutedEventArgs e) {
 			if (Equals(sender, RandomRb)) {
-				MonteCarlo.GameMode = GameMode.Random;
+				_robot.Strategy = Strategy.Random;
 			}
 			else if (Equals(sender, OwnStrategyRb)) {
-				MonteCarlo.GameMode = GameMode.OwnStrategy;
+				_robot.Strategy = Strategy.OwnStrategy;
 			}
 			else {
 				MessageBox.Show($"Radio button error. Game mode not detected.\n {sender.ToString()}");
 			}
-			TextOutput.Text = $"Game mode changed to {MonteCarlo.GameMode.ToString()}";
+			TextOutput.Text = $"Game mode changed to {_robot.Strategy.ToString()}";
 		}
 
 		public void CheckNumericInput(object sender, TextCompositionEventArgs e) {
