@@ -37,15 +37,15 @@ namespace DIS_01_Robot {
 			ChartSettings = new ChartSettings(1000, 300000);
 			Random seeder = new Random();
 			Area = new Area() {
-				Rows = 4,
-				Columns = 4,
-				CurrentRow = 0,
-				CurrentColumn = 0,
+				Rows = 50,
+				Columns = 50,
+				CurrentRow = 25,
+				CurrentColumn = 25,
 			};
 			_robot = new Robot(seeder);
 			MonteCarlo = new RobotMovementMC(_robot) {
 				ChartSettings = ChartSettings,
-				K = 5,
+				K = 10,
 			};
 
 			EnableControls();

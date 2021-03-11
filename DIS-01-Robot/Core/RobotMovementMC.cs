@@ -64,6 +64,5 @@ namespace SimulationCore {
 			return $"Average number of robot steps:{SumOfSteps / (double)NumberOfReplications}\n" +
 			       $"Probability that robot walk more than K steps: {(StepsHigherThanK/ (double)NumberOfReplications) * 100}%";
 		}
-
 	}
 }

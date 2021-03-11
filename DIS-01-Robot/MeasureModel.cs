@@ -10,6 +10,6 @@ namespace GUI.Chart {
 	/// </summary>
 	public class MeasureModel {
 		public int Replications { get; set; }
-		public double WinPercentage { get; set; }
+		public double YValue { get; set; }
 	}
 }

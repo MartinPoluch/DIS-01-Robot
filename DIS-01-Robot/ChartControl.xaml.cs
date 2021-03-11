@@ -39,7 +39,7 @@ namespace DIS_01_Robot {
 			//a IChartValues instance uses this type.
 			var mapper = Mappers.Xy<MeasureModel>()
 				.X(model => model.Replications)
-				.Y(model => model.WinPercentage);
+				.Y(model => model.YValue);
 
 			//lets save the mapper globally.
 			Charting.For<MeasureModel>(mapper);
@@ -62,7 +62,7 @@ namespace DIS_01_Robot {
 		public void AddChartValue(int replication, double winPercentage) {
 			MeasureModel model = new MeasureModel {
 				Replications = replication,
-				WinPercentage = winPercentage
+				YValue = winPercentage
 			};
 			ChartValues.Add(model);
 			SetAxisLimits(replication);
